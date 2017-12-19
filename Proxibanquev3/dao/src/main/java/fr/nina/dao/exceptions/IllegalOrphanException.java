@@ -1,4 +1,4 @@
-package fr.gtm.dao.exceptions;
+package fr.nina.dao.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

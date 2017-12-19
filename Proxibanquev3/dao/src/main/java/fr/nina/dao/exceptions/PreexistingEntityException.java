@@ -1,4 +1,4 @@
-package fr.gtm.dao.exceptions;
+package fr.nina.dao.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {

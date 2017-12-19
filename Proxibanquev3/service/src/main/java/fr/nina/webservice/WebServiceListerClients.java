@@ -8,8 +8,8 @@ package fr.nina.webservice;
 import fr.nina.service.ServiceConseiller;
 import static fr.nina.service.ServiceConseiller.listerClientsConseiller;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-
 
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,25 +17,33 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Nina et Robinson**/
-
-/**
- * Codage de la classe servant à produire un JSON suite à la consommation d'un id conseiller.
+ * @author Nina et Robinson*
  */
-
+/**
+ * Codage de la classe servant Ã  produire un JSON suite Ã  la consommation d'un
+ * id conseiller.
+ */
 @Path("conseiller")
-public class WebServiceListerClients{
+public class WebServiceListerClients {
 
     @POST
     @Path("/listeclients")
-    @Consumes(MediaType.TEXT_PLAIN)    
-    @Produces(MediaType.TEXT_PLAIN)    
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
     public String sendCliData(String userIdCons) {
-        String clijson ;
+        String clijson;
         Long idcons = Long.parseLong(userIdCons, 10);
-        
+
         clijson = listerClientsConseiller(idcons);
         return clijson;
     }
 
+    @GET
+    @Path("/listeclients")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sendCliData() {
+        String resjson = listerClientsConseiller(1L);
+        String message = "Json des clients pour le conseiller 1 \n" + resjson;
+        return message;
+    }
 }

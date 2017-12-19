@@ -1,5 +1,10 @@
 <html>
-<body>
-<h2>Hello World!</h2>
-</body>
+    <body>
+        <form action="GetListeClients" method="post">
+
+            Numéro Conseiller: <input type="text" name="loginuser"><br>
+            <input type="submit" value="Submit">
+        </form>
+
+    </body>
 </html>
