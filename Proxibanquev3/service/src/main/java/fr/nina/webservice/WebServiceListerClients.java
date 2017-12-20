@@ -41,9 +41,10 @@ public class WebServiceListerClients {
     @GET
     @Path("/listeclients")
     @Produces(MediaType.TEXT_PLAIN)
-    public String sendCliData() {
+    public String sendMessage() {
         String resjson = listerClientsConseiller(1L);
         String message = "Json des clients pour le conseiller 1 \n" + resjson;
+        System.out.println(message);
         return message;
     }
 }

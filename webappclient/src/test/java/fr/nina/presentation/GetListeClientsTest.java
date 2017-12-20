@@ -25,7 +25,6 @@ public class GetListeClientsTest extends TestCase {
 
     @Test
     public void testUrlOk() {
-        String login = "1";
         Client client = ClientBuilder.newClient();
 
         WebTarget webTarget = client.target("http://localhost:8081/webservice/proxapi/");
@@ -37,7 +36,6 @@ public class GetListeClientsTest extends TestCase {
 
     @Test
     public void testNoHttpError() {
-        String login = "1";
         Client client = ClientBuilder.newClient();
         
         WebTarget webTarget = client.target("http://localhost:8081/webservice/proxapi/");
@@ -46,7 +44,7 @@ public class GetListeClientsTest extends TestCase {
 
         Invocation.Builder invocationBuilder = getobject.request();
         
-        Response response = invocationBuilder.post(Entity.entity(login, MediaType.TEXT_PLAIN));
+        Response response = invocationBuilder.post(Entity.entity("1", MediaType.TEXT_PLAIN));
         System.out.println("c");
 
         assertEquals(200, response.getStatus());

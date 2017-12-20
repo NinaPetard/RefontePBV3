@@ -31,8 +31,9 @@ public class GetListeClients extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
-            String login = request.getParameter("loginuser");
-            System.out.println(login);
+            //String login = request.getParameter("loginuser");
+            //System.out.println(login);
+            String login ="1";
             Client client = ClientBuilder.newClient();
 
             WebTarget webTarget = client.target("http://localhost:8081/webservice/proxapi/");

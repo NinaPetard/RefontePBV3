@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.nina.dao.ConseillerJpaController;
 import fr.nina.domaine.Client;
 import fr.nina.domaine.Conseiller;
+import fr.nina.util.Emf;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,16 +34,16 @@ public class ServiceConseiller {
 
         List<Client> clients;
         EntityManagerFactory emf;
-        String lcjson = "";
-        //import
-        emf = Persistence.createEntityManagerFactory("fr.nina_domaine_jar_1.0-SNAPSHOTPU");
+
+        emf = Emf.getEmf();
+        
         ConseillerJpaController cjc = new ConseillerJpaController(emf);
 
         Conseiller cons = cjc.findConseiller(idcons);
         clients = cons.getClientList();
          emf.close();
 
-        lcjson = clientsConseillertoJSON(clients);
+        String lcjson = clientsConseillertoJSON(clients);
         return lcjson;
     }
 
@@ -60,5 +61,7 @@ public class ServiceConseiller {
         return lcjson;
 
     }
+    
+
 
 }
