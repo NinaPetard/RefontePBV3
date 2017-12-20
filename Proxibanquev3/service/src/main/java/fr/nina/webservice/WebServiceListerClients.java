@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
 public class WebServiceListerClients {
 
     @POST
-    @Path("/listeclients")
+    @Path("listeclients")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String sendCliData(String userIdCons) {
@@ -39,7 +39,7 @@ public class WebServiceListerClients {
     }
 
     @GET
-    @Path("/listeclients")
+    @Path("listeclients")
     @Produces(MediaType.TEXT_PLAIN)
     public String sendMessage() {
         String resjson = listerClientsConseiller(1L);

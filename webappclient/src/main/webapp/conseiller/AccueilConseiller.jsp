@@ -1,17 +1,26 @@
-<%-- 
-    Document   : AccueilConseiller
-    Created on : 19 déc. 2017, 18:42:04
-    Author     : adminl
---%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Accueil</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <c:out value="${lala}"/>
+        <c:forEach var="type" items="${clients}"> 
+            	<c:out value="${type.nom}" >${type.nom}</c:out>
+                    
+            	</c:forEach>
+        
+        <c:out value='${sessionScope.lala}'/>
+        
+        ${sessionScope.lala}
+                   
+        
     </body>
 </html>

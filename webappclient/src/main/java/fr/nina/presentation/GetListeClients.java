@@ -25,44 +25,26 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@WebServlet(urlPatterns = {"/GetListeClients"})
+@WebServlet(urlPatterns = "/GetListeClients")
 
 public class GetListeClients extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
-            //String login = request.getParameter("loginuser");
-            //System.out.println(login);
-            String login ="1";
-            Client client = ClientBuilder.newClient();
-
-            WebTarget webTarget = client.target("http://localhost:8081/webservice/proxapi/");
-            WebTarget resourceWebTarget = webTarget.path("conseiller");
-            WebTarget getobject = resourceWebTarget.path("listeclients");
-
-            System.out.println(getobject.getUri());
-            Invocation.Builder invocationBuilder = getobject.request();
-
-            //Appel de la méthode post : envoi de l'objet objetAEnvoyer, et on déclare que c'est un json.
-            Response responseb = invocationBuilder.post(Entity.entity(login, MediaType.TEXT_PLAIN));
-            System.out.println("c");
-
-            if (responseb.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + responseb.getStatus());
-            }
-            String responseText = invocationBuilder.post(Entity.entity(login, MediaType.TEXT_PLAIN), String.class);
-            
+            ClientListeConseiller cls = new ClientListeConseiller();
+            String responseService = cls.sendCliData("1");
             
             ObjectMapper mapper = new ObjectMapper();
             
-        ArrayList<fr.nina.domaineclient.Client> clients = mapper.readValue(responseText, mapper.getTypeFactory().constructCollectionType(ArrayList.class, fr.nina.domaineclient.Client.class));           
+        ArrayList<fr.nina.domaineclient.Client> clients = mapper.readValue(responseService, mapper.getTypeFactory().constructCollectionType(ArrayList.class, fr.nina.domaineclient.Client.class));           
             
             RequestDispatcher dispatcher;            
-            HttpSession maSession = request.getSession();   
-            maSession.setAttribute("json", responseText);
-            maSession.setAttribute("clients", clients);
-            dispatcher = request.getRequestDispatcher("conseiller/AccueilConseiller.jsp");
+            HttpSession session = request.getSession();   
+            session.setAttribute("json", responseService);
+            session.setAttribute("clients", clients);
+            session.setAttribute("lala", "LALALA");
+            
+            dispatcher = request.getRequestDispatcher("/conseiller/AccueilConseiller.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException ex) {
