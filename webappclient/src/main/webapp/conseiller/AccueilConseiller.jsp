@@ -1,26 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page session="true" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@includefile = "header.jsp" %>
+<%@includefile = "/navbar.jsp" %>
+
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
     </head>
-    <body>
-        
-        <c:out value="${lala}"/>
-        <c:forEach var="type" items="${clients}"> 
-            	<c:out value="${type.nom}" >${type.nom}</c:out>
-                    
-            	</c:forEach>
-        
-        <c:out value='${sessionScope.lala}'/>
-        
-        ${sessionScope.lala}
-                   
-        
+    <body>        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well">
+                        <p>Bienvenue sur votre espace personnel.<br> A droite, vous pouvez
+                            consulter la liste des clients donc vous avez la charge. <br>
+                            L'ensemble des actions possibles sont listées dans la barre des
+                            tâches ci-dessus.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Identifiant</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Adresse</th>
+                                <th>Telephone</th>
+                            </tr>
+
+                            <c:forEach var="client" items="${clients}">
+                                <tr>
+                                    <th> ${client.idclient} </th>
+                                    <th>${client.nom}</th>
+                                    <th>${client.prenom}</th>
+                                    <th>${client.adresse} ${clients.codePostal} ${clients.ville}</th>
+                                    <th>${client.telephone}</th>
+                                </tr>
+                            </c:forEach>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

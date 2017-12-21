@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fr.nina.presentation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,13 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+
 
 @WebServlet(urlPatterns = "/GetListeClients")
 
@@ -44,7 +34,7 @@ public class GetListeClients extends HttpServlet {
             session.setAttribute("clients", clients);
             session.setAttribute("lala", "LALALA");
             
-            dispatcher = request.getRequestDispatcher("/conseiller/AccueilConseiller.jsp");
+            dispatcher = request.getRequestDispatcher("conseiller/AccueilConseiller.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException ex) {
