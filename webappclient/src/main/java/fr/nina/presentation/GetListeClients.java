@@ -21,8 +21,10 @@ public class GetListeClients extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
+            
+            String login = request.getParameter("loginuser");
             ClientListeConseiller cls = new ClientListeConseiller();
-            String responseService = cls.sendCliData("1");
+            String responseService = cls.sendCliData(login);
             
             ObjectMapper mapper = new ObjectMapper();
             
@@ -32,7 +34,6 @@ public class GetListeClients extends HttpServlet {
             HttpSession session = request.getSession();   
             session.setAttribute("json", responseService);
             session.setAttribute("clients", clients);
-            session.setAttribute("lala", "LALALA");
             
             dispatcher = request.getRequestDispatcher("conseiller/AccueilConseiller.jsp");
             dispatcher.forward(request, response);

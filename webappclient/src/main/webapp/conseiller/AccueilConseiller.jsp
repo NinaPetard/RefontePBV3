@@ -1,5 +1,5 @@
 <%@includefile = "header.jsp" %>
-<%@includefile = "/navbar.jsp" %>
+<%@includefile = "navbar.jsp" %>
 
 
 <html>
@@ -31,10 +31,10 @@
 
                             <c:forEach var="client" items="${clients}">
                                 <tr>
-                                    <th> ${client.idclient} </th>
+                                    <th>${client.idclient} </th>
                                     <th>${client.nom}</th>
                                     <th>${client.prenom}</th>
-                                    <th>${client.adresse} ${clients.codePostal} ${clients.ville}</th>
+                                    <th>${client.adresse} ${client.codepostal} ${client.ville} </th>
                                     <th>${client.telephone}</th>
                                 </tr>
                             </c:forEach>

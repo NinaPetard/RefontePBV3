@@ -27,7 +27,7 @@ public class ClientListeConseiller {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8081/service/proxapi";
+    private static final String BASE_URI = "http://localhost:8082/service/proxapi";
 
     public ClientListeConseiller() {
         client = javax.ws.rs.client.ClientBuilder.newClient();

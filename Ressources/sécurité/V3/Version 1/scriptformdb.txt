@@ -1,0 +1,112 @@
+--Script de creation des tables de la base COMMANDE
+
+connect system/bourne;
+drop user robnina cascade;
+create user robnina
+identified by toto;
+grant connect, create view, resource to robnina;
+connect robnina/toto;
+
+
+Prompt *************************************************************************************
+Prompt LANCEMENT DU SCRIPT DE CREATION DE LA BASE COMMANDE-VERSION 2017 
+
+
+
+--SUPPRESSION DES TABLES
+Prompt *************************************************************************************
+Prompt SUPPRESSION DES TABLES
+Prompt *************************************************************************************
+
+drop table conseiller cascade constraints purge;
+drop table client cascade constraints purge;
+drop table Role cascade constraints purge;
+drop table compte cascade constraints purge;
+
+--CREATION DES TABLES
+
+Prompt *************************************************************************************
+Prompt CREATION DES TABLES
+Prompt *************************************************************************************
+
+
+Prompt CREATION DE LA TABLE conseiller
+
+create table conseiller
+( login 		varchar(30)constraint pk_idcons primary key,
+  password 		varchar(30));
+
+Prompt CREATION DE LA TABLE CLIENT
+
+create table client
+( idclient       number constraint pk_idcli primary key,
+  nom 			 varchar(20), 
+  prenom         varchar(20),
+  email			 varchar(40),
+  adresse        varchar(50),
+  login   		varchar(30) constraint fk_idcons references conseiller(login));
+  
+Prompt CREATION DE LA TABLE compte
+
+create table compte
+( idcompte  	number constraint pk_idcompt primary key,
+  idclient 	    number constraint fk_idcli references client(idclient),
+  typecompte	varchar(20),
+  solde			number(7,2));
+  
+  
+create table Role
+( login			varchar(30) constraint fk_login references conseiller(login), 
+role_type varchar(20));
+
+
+Prompt *************************************************************************************
+
+--INSERTION DES DONNEES
+
+Prompt INSERTION DES DONNEES
+Prompt *************************************************************************************
+
+
+Prompt INSERTION DANS conseiller
+
+DELETE FROM conseiller;
+insert into conseiller values ('Nina','Petard');
+insert into conseiller values ('Robinson','Bordes');
+
+
+Prompt INSERTION DANS Role
+
+insert into Role values ('Nina', 'conseiller');
+insert into Role values ('Robinson', 'conseiller');
+
+
+Prompt INSERTION DANS CLIENT
+
+delete from client;
+insert into client values(1,'Cheleux','Joinel','joinel.cheleux@gmail.com','22 Rue de la Paix 75001 Paris','Nina');
+insert into client values(2,'Belleus','Hattmann','hattmann.belleus@gmail.com','22 Avenue Moliere 75016 Paris','Robinson');
+insert into client values(6,'Sy','Omar','omar.sy@gmail.com','8 Rue des artistes 75019 Paris','Robinson');
+insert into client values(7,'Pitt','Brad','brad.pitt@gmail.com','1 rue de Hollywood 75019 Paris','Nina');
+
+
+Prompt INSERTION DANS COMPTE
+delete from compte;
+insert into compte values(448,2,'Epargne',22145.25);
+insert into compte values(449,2,'Courant',10458);
+insert into compte values(450,1,'Courant',569);
+insert into compte values(451,1,'Epargne',1569);
+insert into compte values(459,6,'Epargne',4569);
+insert into compte values(460,6,'Courant',269);
+insert into compte values(461,7,'Epargne',5569);
+insert into compte values(462,7,'Courant',869);
+
+
+Prompt *************************************************************************************
+
+Prompt Validation des Données
+Prompt *************************************************************************************
+
+commit;
+
+Prompt FIN DE CREATION DE LA BASE COMMANDE.
