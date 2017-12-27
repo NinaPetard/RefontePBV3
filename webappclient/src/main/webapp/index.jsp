@@ -7,7 +7,7 @@
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<div class="well">
-				<form method="post" action="Connexion">
+				<form method="post" action="conseiller/Connexion">
 					<div class="form-group">
 						<label for="text">Login:</label> <input type="text"
 							class="form-control" placeholder="login" name="loginuser">

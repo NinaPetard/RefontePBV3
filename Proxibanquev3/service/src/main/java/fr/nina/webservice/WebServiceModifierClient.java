@@ -36,10 +36,6 @@ public class WebServiceListerClients {
         String message="";
         EntityManagerFactory emf = getEmf();
         ClientJpaController daoC = new ClientJpaController(emf);
-        
-       
-        
-        
         try{        
        Client client;
        client = clientfromJSON(clientJson);

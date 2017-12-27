@@ -37,15 +37,17 @@ public class PrepareModif extends HttpServlet {
         HttpSession session = request.getSession();
         String idclient = request.getParameter("clientmodif");
         ArrayList<Client> clients = (ArrayList<Client>) session.getAttribute("clients");
-        int idclientInt = Integer.parseInt(idclient); ;
-
+        int idclientInt = Integer.parseInt(idclient);;
+        Client clientTarget = new Client();
         for (Client client : clients) {
-            if (idclientInt  == client.getIdclient()) {
-               Client clientTarget = client ;
+            if (idclientInt == client.getIdclient()) {
+                clientTarget = client;
                 break;
             }
         }
-       
+
+        session.setAttribute("clientModif", clientTarget);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

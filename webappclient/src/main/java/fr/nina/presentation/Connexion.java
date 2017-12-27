@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author adminl
  */
-@WebServlet(name = "Connexion", urlPatterns = {"/Connexion"})
+@WebServlet("/conseiller/Connexion")
 public class Connexion extends HttpServlet {
 
     /**
@@ -34,23 +34,19 @@ public class Connexion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         Conseiller cons = new Conseiller();
         String login = request.getParameter("loginuser");
         String password = request.getParameter("password");
-        
-        
-        
-        
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        RequestDispatcher dispatcher;            
-        HttpSession session = request.getSession();   
+        RequestDispatcher dispatcher;
+        HttpSession session = request.getSession();
         session.setAttribute("conseiller", cons);
-            
-            
-            dispatcher = request.getRequestDispatcher("conseiller/AccueilConseiller.jsp");
-            dispatcher.forward(request, response);
+
+        dispatcher = request.getRequestDispatcher("AccueilConseiller.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
